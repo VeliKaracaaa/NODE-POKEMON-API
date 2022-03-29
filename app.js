@@ -5,6 +5,11 @@ const pokemons = require('./mock-pokemon');
 const app = express()
 const port = 3000
 
+app.use((req, res, next) => {
+    console.log(`URL: ${req.url}`)
+    next()
+})
+
 app.get('/', (req, res) => res.send('Hello express 3!'))
 
 app.get('/api/pokemons/:id', (req, res) => {
@@ -14,7 +19,7 @@ app.get('/api/pokemons/:id', (req, res) => {
     res.json(success(message, pokemon))
 })
 
-//Nouveau point d'entrer
+//Nouveau point d'entrer, on retourne une liste des pokémons au format JSON, avec un message
 app.get('/api/pokemons', (req, res) => {
     const message = "La liste des pokemons a bien été récupérée."
     res.json(success(message, pokemons))
