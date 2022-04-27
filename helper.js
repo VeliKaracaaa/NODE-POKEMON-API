@@ -1,3 +1,3 @@
-exports.sucess = (message, data) => {
+exports.success = (message, data) => {
     return { message, data }
 }
