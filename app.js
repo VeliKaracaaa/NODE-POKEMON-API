@@ -1,10 +1,12 @@
 const express = require('express')
+const morgan = require('morgan')
 let pokemons = require('./mock-pokemon')
 const { success } = require('./helper')
-// const req = require('express/lib/request')
 
 const app = express()
 const port = 3000
+
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => res.send('Hello, Express !'))
 
@@ -25,4 +27,4 @@ app.get('/api/pokemons/:id', (req, res) => {
 //     res.send(`Il y a ${pokemons.length} pokémons dans le pokédex, pour le moment`)
 // })
 
-app.listen(port, () => console.log(`Notre application Node est démarré sur : http://localhost:${port}`))
+app.listen(port, () => console.log(`Notre application Node est démarré sur : http://localhost:${port}`)) 
