@@ -16,6 +16,7 @@ app
 
 app.get('/', (req, res) => res.send('Hello, Express !'))
 
+// On retourne la liste des pokémons au format JSON, avec un message :
 app.get('/api/pokemons', (req, res) => {
     const message = "La liste des pokemons a bien été récupérée"
     res.json(success(message, pokemons))
@@ -34,6 +35,16 @@ app.post('/api/pokemons', (req, res) => {
     pokemons.push(pokemonCreated)
     const message = `Le pokemon ${pokemonCreated.name} a bien été crée.`
     res.json(success(message, pokemonCreated)) 
+})
+
+app.put('/api/pokemons/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const pokemonUpdated = { ...req.body, id: id}
+    pokemons = pokemons.map(pokemon => {
+        return pokemon.id === id ? pokemonUpdated : pokemon
+    })
+    const message = `Le pokemon ${pokemonUpdated.name} a bien été modifié`
+    res.json(success(message, pokemonUpdated))
 })
 
 // nouveau point de terminaison affichant le nombre totale de pokemons
