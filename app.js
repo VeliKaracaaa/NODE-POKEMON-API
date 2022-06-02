@@ -10,4 +10,9 @@ app.get('/api/pokemon/:id', (req, res) => {
     res.send(`Vous avez demandé le pokemon ${pokemon.name}`)
 })
 
+app.get('/api/pokemons', (req, res) => {
+    const nbr_total_pokemon = pokemons.length
+    res.send(`Vous avez ${nbr_total_pokemon} pokemon dans le pokedex pour le moment`)
+})
+
 app.listen(port, () => console.log(`Notre application Node est bien démarrer sur : htpp://localhost:${port}`))
